@@ -17,6 +17,8 @@ app.use(logger('dev'));
 
 app.use('/', home);
 
-app.listen(3000, function(){
-  console.log('listening on 3000');
+app.set('port', process.env.PORT || 3000);
+var port = app.get('port');
+app.listen(port, function(){
+  console.log(`listening on ${port}`);
 });

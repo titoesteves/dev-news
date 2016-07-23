@@ -4,8 +4,14 @@
   "description": "",
   "main": "server.js",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.1.1",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3"
+  },
   "scripts": {
+    "pretest": "npm run lint",
     "test": "istanbul cover _mocha",
     "lint": "eslint . --ext .js",
     "start": "node server.js"

@@ -1,0 +1,22 @@
+{
+  "name": "fav-urls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "istanbul cover _mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titoesteves/rss-reader.git"
+  },
+  "author": "Tito Esteves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/titoesteves/rss-reader/issues"
+  },
+  "homepage": "https://github.com/titoesteves/rss-reader#readme"
+}

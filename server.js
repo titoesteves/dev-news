@@ -1,4 +1,5 @@
 var home = require('./routes/index');
+var logger = require('morgan');
 var handlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
 var express = require('express');
@@ -11,6 +12,8 @@ app.set('view engine', 'html');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(logger('dev'));
 
 app.use('/', home);
 

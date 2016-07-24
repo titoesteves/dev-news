@@ -10,5 +10,17 @@
 <section class="list">
   <h2>Dev News</h2>
   <ul class="links">
+    {{#each links}}
+      <li class="link" href="{{link}}">{{title}}</li>
+    {{/each}}
   </ul>
 </section>
+
+<!-- 
+
+function displayLink(obj) {
+  var $link = $('<li class="link"/>');
+  var $title = $(`<a class="title" href="${obj.link}" target="_blank"/>`);
+  $title.text(obj.title).appendTo($link);
+  $links.prepend($link);
+} -->

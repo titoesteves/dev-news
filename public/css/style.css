@@ -24,6 +24,24 @@ body {
   height: 100%;
 }
 
+.aside li {
+  list-style: none;
+  margin: 10px;
+  /*padding: 0% 0% 10% 10%;*/
+  /*text-align: center;*/
+}
+
+.aside h3 {
+  text-align: center;
+  margin-bottom: 20%;
+}
+
+.aside:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
 .list {
   width: 80%;
   float: right;
@@ -57,17 +75,6 @@ body {
 
 .list li a:hover {
   cursor:pointer; 
-}
-
-.aside h3 {
-  text-align: center;
-  margin-bottom: 20%;
-}
-
-.aside li {
-  list-style: none;
-  padding: 0% 0% 10% 10%;
-  /*text-align: center;*/
 }
 
 hr {

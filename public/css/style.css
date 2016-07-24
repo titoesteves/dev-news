@@ -17,6 +17,7 @@ body {
 
 .aside {
   width: 20%;
+  max-width: 20%;
   /*margin-top: 4%;*/
   float: left;
   color: black;

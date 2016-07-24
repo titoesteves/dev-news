@@ -38,7 +38,6 @@ function getEachRssItem(index) {
 }
 
 function getEachJsonItem(obj){
-  console.log(obj)
   var link = { link: obj.url, title: obj.title };
   displayLink(link);
 }

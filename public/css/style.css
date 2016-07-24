@@ -1,9 +1,9 @@
-html {
+html, body {
   height: 100%;
+  width: 100%;
 }
+
 body {
-  height: 100%;
-  margin: 0;
   font-family: "Lato","Geneva CY","Lucida Grande","Arial Unicode MS","Helvetica Neue","Helvetica","Arial",sans-serif;
   background: rgba(4,46,92,1);
   background: -moz-linear-gradient(top, rgba(4,46,92,1) 0%, rgba(73,155,234,1) 100%);
@@ -31,23 +31,32 @@ body {
   height: 100%;
 }
 
-.list h1 {
-  margin-left: 54px;
+.list h2 {
+  margin-left: 44px;
   /*margin-left: 4.5%;*/
 }
 
 .list li {
   list-style: none;
   padding: 2%;
-  margin: 1%;
+  margin: .1%;
   background-color: white;
   color: black;
   border: solid black;
   border-width: thin;
 }
 
+.list li:hover {
+  background-color: #F5F5F5;
+}
+
 .list li a {
   text-decoration: none;
+  color: inherit;
+}
+
+.list li a:hover {
+  cursor:pointer; 
 }
 
 .aside h3 {

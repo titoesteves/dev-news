@@ -2,7 +2,7 @@ var $links = $('.links'),
   $site = $('.aside li'),
   sites = {
     'Hacker News': 'http://reader.one/api/news/hn?limit=20',
-    'Echo JS': '//www.echojs.com/rss',
+    'Echo JS': 'http://www.echojs.com/rss',
     'Slashdot': 'http://reader.one/api/news/slashdot?limit=20',
     'Product Hunt': 'http://reader.one/api/news/ph',
     'Github Trend': 'http://reader.one/api/news/github?limit=20'
@@ -15,7 +15,6 @@ $(document).ready(function() {
 });
 
 function siteClick(event){
-  var $target = $(event.target);
   var site = sites[event.target.innerHTML];
   console.log(site);
   getLinks(site);
@@ -33,10 +32,7 @@ function getEachRssItem(index) {
     var $this = $(this),
       obj = {
         title: $this.find('title').text(),
-        link: $this.find('link').text(),
-        description: $this.find('description').text(),
-        pubDate: $this.find('pubDate').text(),
-        author: $this.find('author').text()
+        link: $this.find('link').text()
       };
     displayLink(obj);
   }

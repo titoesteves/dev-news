@@ -26,6 +26,7 @@ body {
   max-width: 20%;
   /*margin-top: 4%;*/
   float: left;
+  display: block;
   color: black;
   background-color: #f7f7f7;
   height: 100%;

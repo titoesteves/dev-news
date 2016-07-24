@@ -1,11 +1,11 @@
 var $links = $('.links'),
   $site = $('.aside li'),
   sites = {
-    'Hacker News': 'http://reader.one/api/news/hn',
+    'Hacker News': 'http://reader.one/api/news/hn?limit=20',
     'Echo JS': '//www.echojs.com/rss',
-    'Slashdot': 'http://reader.one/api/news/slashdot',
+    'Slashdot': 'http://reader.one/api/news/slashdot?limit=20',
     'Product Hunt': 'http://reader.one/api/news/ph',
-    'Github Trend': 'http://reader.one/api/news/github'
+    'Github Trend': 'http://reader.one/api/news/github?limit=20'
   };
 
 $(document).ready(function() {
@@ -69,8 +69,6 @@ function getSite(type, siteUrl){
     });
   } else {
     $.get(siteUrl, function(data) {
-      var $data = $(data);
-      console.log($data);
       data.forEach(getEachJsonItem);
     });
   }

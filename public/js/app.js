@@ -2,7 +2,7 @@ var $links = $('.links'),
   $site = $('.aside li'),
   sites = {
     'Hacker News': 'https://news.ycombinator.com/rss',
-    'Echo JS': 'http://www.echojs.com/rss',
+    'Echo JS': '//www.echojs.com/rss',
     'Slashdot': 'http://reader.one/api/news/slashdot',
     'Product Hunt': 'https://www.producthunt.com/feed.atom',
     'Github Trend': 'https://github.com/trending'

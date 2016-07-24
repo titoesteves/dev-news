@@ -9,16 +9,9 @@ html {
   position: relative;
 }
 
-body{
-  height: 100%;
-  width: 100%;
-}
-/*html, body {
-  height: 100%;
-  width: 100%;
-}*/
-
 body {
+  height: 100%;
+  width: 100%;
   font-family: "Lato","Geneva CY","Lucida Grande","Arial Unicode MS","Helvetica Neue","Helvetica","Arial",sans-serif;
   background: rgba(4,46,92,1);
   background: -moz-linear-gradient(top, rgba(4,46,92,1) 0%, rgba(73,155,234,1) 100%);
@@ -28,13 +21,10 @@ body {
   background: -ms-linear-gradient(top, rgba(4,46,92,1) 0%, rgba(73,155,234,1) 100%);
   background: linear-gradient(to bottom, rgba(4,46,92,1) 0%, rgba(73,155,234,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#042e5c', endColorstr='#499bea', GradientType=0 );
-  /*background-repeat: no-repeat;
-  background-attachment: fixed;*/
 }
 
 .aside {
   width: 20%;
-  /*margin-top: 4%;*/
   float: left;
   color: black;
   background-color: #f7f7f7;
@@ -44,16 +34,9 @@ body {
   bottom: 0;
 }
 
-.aside ul {
-  /*margin-left: 5px;*/
-}
-
 .aside li {
   list-style: none;
   margin-bottom: 10%;
-  /*margin: 10px;*/
-  /*padding: 0% 0% 10% 10%;*/
-  /*text-align: center;*/
 }
 
 .aside h3 {
@@ -71,7 +54,6 @@ body {
 
 .list h2 {
   margin-left: 44px;
-  /*margin-left: 4.5%;*/
 }
 
 .list li {

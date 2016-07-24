@@ -1,11 +1,11 @@
 var $links = $('.links'),
   $site = $('.aside li'),
   sites = {
-    'Hacker News': 'https://news.ycombinator.com/rss',
+    'Hacker News': 'http://reader.one/api/news/hn',
     'Echo JS': '//www.echojs.com/rss',
     'Slashdot': 'http://reader.one/api/news/slashdot',
-    'Product Hunt': 'https://www.producthunt.com/feed.atom',
-    'Github Trend': 'https://github.com/trending'
+    'Product Hunt': 'http://reader.one/api/news/ph',
+    'Github Trend': 'http://reader.one/api/news/github'
   };
 
 $(document).ready(function() {
@@ -18,17 +18,17 @@ function siteClick(event){
   var $target = $(event.target);
   var site = sites[event.target.innerHTML];
   console.log(site);
-  getRss(site);
+  getLinks(site);
 }
 
-function createLink(obj) {
+function displayLink(obj) {
   var $link = $('<li class="link"/>');
   var $title = $(`<a class="title" href="${obj.link}" target="_blank"/>`);
   $title.text(obj.title).appendTo($link);
   $links.prepend($link);
 }
 
-function getEachItem(index) {
+function getEachRssItem(index) {
   if (index < 20) {
     var $this = $(this),
       obj = {
@@ -38,30 +38,44 @@ function getEachItem(index) {
         pubDate: $this.find('pubDate').text(),
         author: $this.find('author').text()
       };
-    createLink(obj);
+    displayLink(obj);
   }
 }
 
-function getRss(rssUrl) {
-  if ($links.html() !== '') {
-    $links.html('');
-    $.get(rssUrl, function(data) {
-      var $xml = $(data);
-      $xml.find('item').each(getEachItem);
+function getEachJsonItem(obj){
+  var link = { link: obj.url, title: obj.title };
+  displayLink(link);
+}
+
+function getLinks(url) {
+  $links.html('');
+  var type = '';
+  if(url.indexOf('rss') > -1){
+    type = 'rss';
+    getSite(type, url);
+  } else {
+    $.get(url, function(data){
+      console.log('data', data);
+      getSite(null, url);
     });
   }
 }
 
-function getJson(siteUrl){
-  if ($links.html() !== '') {
-    $links.html('');
+function getSite(type, siteUrl){
+  if(type === 'rss'){
     $.get(siteUrl, function(data) {
       var $xml = $(data);
-      $xml.find('item').each(getEachItem);
+      $xml.find('item').each(getEachRssItem);
+    });
+  } else {
+    $.get(siteUrl, function(data) {
+      var $data = $(data);
+      console.log($data);
+      data.forEach(getEachJsonItem);
     });
   }
 }
 
 function defaultDisplay(url) {
-  getRss(url);
+  getLinks(url);
 }

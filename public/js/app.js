@@ -1,14 +1,25 @@
 var $links = $('.links'),
-  $site = $('.aside li');
+  $site = $('.aside li'),
+  sites = {
+    'Hacker News': 'https://news.ycombinator.com/rss',
+    'Echo JS': 'http://www.echojs.com/rss',
+    'Slashdot': 'http://reader.one/api/news/slashdot',
+    'Product Hunt': 'https://www.producthunt.com/feed.atom',
+    'Github Trend': 'https://github.com/trending'
+  };
 
 $(document).ready(function() {
-  defaultDisplay();
+  defaultDisplay(sites['Hacker News']);
 
-  $site.on('click', function() {
-    console.log('clicked');
-    // $.ajax({});
-  });
+  $site.on('click', siteClick);
 });
+
+function siteClick(event){
+  var $target = $(event.target);
+  var site = sites[event.target.innerHTML];
+  console.log(site);
+  getRss(site);
+}
 
 function createLink(obj) {
   var $link = $('<li class="link"/>');
@@ -31,9 +42,26 @@ function getEachItem(index) {
   }
 }
 
-function defaultDisplay() {
-  $.get('https://news.ycombinator.com/rss', function(data) {
-    var $xml = $(data);
-    $xml.find('item').each(getEachItem);
-  });
+function getRss(rssUrl) {
+  if ($links.html() !== '') {
+    $links.html('');
+    $.get(rssUrl, function(data) {
+      var $xml = $(data);
+      $xml.find('item').each(getEachItem);
+    });
+  }
+}
+
+function getJson(siteUrl){
+  if ($links.html() !== '') {
+    $links.html('');
+    $.get(siteUrl, function(data) {
+      var $xml = $(data);
+      $xml.find('item').each(getEachItem);
+    });
+  }
+}
+
+function defaultDisplay(url) {
+  getRss(url);
 }

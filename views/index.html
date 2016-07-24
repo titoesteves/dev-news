@@ -11,7 +11,9 @@
   <h2>Dev News</h2>
   <ul class="links">
     {{#each links}}
-      <li class="link" href="{{link}}">{{title}}</li>
+      <li class="link">
+        <a class="title" href="{{link}}" target="_blank">{{title}}</a>
+      </li>
     {{/each}}
   </ul>
 </section>

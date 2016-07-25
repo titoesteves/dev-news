@@ -9,6 +9,7 @@ function siteClick(event) {
   var siteUrl = '/' + event.target.innerHTML;
   if (siteUrl.indexOf('Echo') > -1) {
     $.get(siteUrl, function(data) {
+      $links.html('');
       data.forEach(getEachJsonItem);
     });
   } else {
@@ -23,7 +24,7 @@ function displayLink(obj) {
   var $link = $('<li class="link"/>');
   var $title = $(`<a class="title" href="${obj.link}" target="_blank"/>`);
   $title.text(obj.title).appendTo($link);
-  $links.prepend($link);
+  $links.append($link);
 }
 
 function getEachJsonItem(obj) {

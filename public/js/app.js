@@ -1,12 +1,5 @@
 var $links = $('.links'),
-  $site = $('.aside li'),
-  sites = {
-    'Hacker News': 'http://reader.one/api/news/hn?limit=20',
-    'Echo JS': 'http://www.echojs.com/rss',
-    'Slashdot': 'http://reader.one/api/news/slashdot?limit=20',
-    'Product Hunt': 'http://reader.one/api/news/ph',
-    'Github Trend': 'http://reader.one/api/news/github?limit=20'
-  };
+  $site = $('.aside li');
 
 $(document).ready(function() {
 
@@ -14,9 +7,17 @@ $(document).ready(function() {
 });
 
 function siteClick(event){
-  var site = sites[event.target.innerHTML];
-  console.log(site);
-  getLinks(site);
+  var siteUrl = '/' + event.target.innerHTML;
+  if(siteUrl.indexOf('Echo') > -1){
+    $.get(siteUrl, function(data){
+      data.forEach(getEachJsonItem);
+    });
+  } else {
+    $.get(siteUrl, function(data) {
+      $links.html('');
+      data.forEach(getEachJsonItem);
+    });
+  }
 }
 
 function displayLink(obj) {
@@ -38,7 +39,7 @@ function getEachRssItem(index) {
 }
 
 function getEachJsonItem(obj){
-  var link = { link: obj.url, title: obj.title };
+  var link = { link: obj.link, title: obj.title };
   displayLink(link);
 }
 
@@ -69,6 +70,3 @@ function getSite(type, siteUrl){
   }
 }
 
-function defaultDisplay(url) {
-  getLinks(url);
-}

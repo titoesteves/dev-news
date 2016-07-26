@@ -12,14 +12,20 @@ var App = (function() {
   function displayLink(obj) {
     var $link = $('<li class="link"/>');
     var $title = $(`<a class="title" href="${obj.link}" target="_blank"/>`);
-    $title.text(obj.title).appendTo($link);
+    var $score = $('<span class="scores"/>');
+    $score.text(obj.score || obj.stars);
+    $title.text(obj.title + '\t');
+    $score.appendTo($title);
+    $title.appendTo($link);
     $links.append($link);
   }
 
   function getEachJsonItem(obj) {
     var link = {
       link: obj.link,
-      title: obj.title
+      title: obj.title,
+      score: obj.score || '',
+      stars: obj.stars || ''
     };
     displayLink(link);
   }

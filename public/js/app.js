@@ -1,19 +1,12 @@
-var App = (function(){
+var App = (function() {
   var $links, $site;
-  
+
   function siteClick(event) {
     var siteUrl = '/' + event.target.innerHTML;
-    if (siteUrl.indexOf('Echo') > -1) {
-      $.get(siteUrl, function(data) {
-        $links.html('');
-        data.forEach(getEachJsonItem);
-      });
-    } else {
-      $.get(siteUrl, function(data) {
-        $links.html('');
-        data.forEach(getEachJsonItem);
-      });
-    }
+    $.get(siteUrl, function(data) {
+      $links.html('');
+      data.forEach(getEachJsonItem);
+    });
   }
 
   function displayLink(obj) {
@@ -31,14 +24,14 @@ var App = (function(){
     displayLink(link);
   }
 
-  function init(){
+  function init() {
     $links = $('.links'), $site = $('.aside li');
     $site.on('click', siteClick);
   }
-  return { init: init };
+  return {
+    init: init
+  };
 })();
 
 
 $(document).ready(App.init);
-
-

@@ -1,5 +1,5 @@
 var helpers = require('../lib/helpers');
-var Xray = require('x-ray');
+var Xray = require('x-ray'); // web scraper
 var xray = new Xray();
 var express = require('express');
 var router = express.Router();
@@ -12,15 +12,23 @@ var sites = {
   'Github Trend': 'http://reader.one/api/news/github?limit=20'
 };
 
-router.get('/', function(req, res){
-  var hn = sites['Hacker News'];
-  helpers.getSite(hn, function(err, links){
+function getSite(shouldRender, site, res){
+  helpers.getSite(site, function(err, links){
     if(err){
       console.log('Error getting links', err);
       res.send(new Error('Error occurred'));
     }
-    res.render('index', { links: links, sites: sites });
+    if(shouldRender){
+      res.render('index', { links: links, sites: sites });
+      return;
+    }
+    res.send(links);
   });
+}
+
+router.get('/', function(req, res){
+  var hn = sites['Hacker News'];
+  getSite(true, hn, res);
 });
 
 router.get('/:site', function(req, res){
@@ -36,14 +44,9 @@ router.get('/:site', function(req, res){
     });
   } else {
     var site = sites[req.params.site];
-    helpers.getSite(site, function(err, links){
-      if(err){
-        console.log('Error getting links', err);
-        res.send(new Error('Error occurred'));
-      }
-      res.send(links);
-    });
+    getSite(false, site, res);
   }
 });
+
 
 module.exports = router;

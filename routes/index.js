@@ -33,20 +33,19 @@ router.get('/', function(req, res){
 
 router.get('/:site', function(req, res){
   if(req.params.site.indexOf('Echo') > -1) {
-    xray('http://www.echojs.com/', 'article h2', [{
-      link: 'a@href',
-      title: 'a'
-    }])(function(err, newslist) {
-      if(err){ 
-        return console.log('err', err);
-      }
-      return res.send(newslist);
-    });
+    scrapeSite('http://www.echojs.com/', 'article h2', { link: 'a@href', title: 'a' }, res);
   } else {
     var site = sites[req.params.site];
     getSite(false, site, res);
   }
 });
 
-
+function scrapeSite(url, element, params, res){
+  xray(url, element, [params])(function(err, newslist) {
+    if(err){ 
+      return console.log('err', err);
+    }
+    return res.send(newslist);
+  });
+}
 module.exports = router;

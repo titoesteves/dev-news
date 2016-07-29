@@ -39,6 +39,10 @@ body {
   margin-bottom: 10%;
 }
 
+.aside li:hover {
+  cursor: pointer;
+}
+
 .aside h3 {
   text-align: center;
   margin-bottom: 20%;

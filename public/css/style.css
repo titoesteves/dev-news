@@ -41,6 +41,7 @@ body {
 
 .aside li:hover {
   cursor: pointer;
+  color: blue;
 }
 
 .aside h3 {
@@ -72,6 +73,7 @@ body {
 
 .list li:hover {
   background-color: #F5F5F5;
+  color: blue;
 }
 
 .list li a {

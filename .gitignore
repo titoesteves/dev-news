@@ -37,3 +37,6 @@ dump.rdb
 .project
 .settings
 .classpath
+
+# Flightplan config file
+flightplan.js

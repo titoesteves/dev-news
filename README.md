@@ -7,4 +7,4 @@ You can view the site at ["Dev News"](https://fav-urls.herokuapp.com/)
 
 There are a few things I would like to add but the basic functionality is complete. 
 
-Tech stack: express, jquery, node, handlebars, eslint
+Tech stack: express, nginx, node, jquery, handlebars, eslint

@@ -1,3 +1,4 @@
+'use strict';
 var helpers = require('../lib/helpers');
 var Xray = require('x-ray'); // web scraper
 var xray = new Xray();

@@ -13,6 +13,8 @@ app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.set('x-powered-by', false);
+
 app.use(logger('dev'));
 
 app.use('/', home);

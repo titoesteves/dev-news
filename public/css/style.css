@@ -23,6 +23,11 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#042e5c', endColorstr='#499bea', GradientType=0 );
 }
 
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
 .aside {
   width: 20%;
   float: left;
@@ -36,7 +41,8 @@ body {
 
 .aside li {
   list-style: none;
-  margin-bottom: 10%;
+  margin: 0 0 10% 3%;
+  text-align: center;
 }
 
 .aside li:hover {
@@ -58,7 +64,8 @@ body {
 }
 
 .list h2 {
-  margin-left: 44px;
+  margin-left: 2%;
+  text-align: left;
 }
 
 .list li {
@@ -82,7 +89,7 @@ body {
 }
 
 .list li a:hover {
-  cursor:pointer; 
+  cursor:pointer;
 }
 
 hr {

@@ -4,6 +4,12 @@ var Xray = require('x-ray'); // web scraper
 var xray = new Xray();
 var express = require('express');
 var router = express.Router();
+var redis = require('redis');
+var redisClient = redis.createClient(6379, '127.0.0.1');
+
+redisClient.on('connect', function () {
+  console.log('Redis connected');
+});
 
 var sites = {
   'Hacker News': 'http://reader.one/api/news/hn?limit=20',
@@ -13,8 +19,13 @@ var sites = {
   'Github Trend': 'http://reader.one/api/news/github?limit=20'
 };
 
+router.get('/', function(req, res){
+  var hn = sites['Hacker News'];
+  getSite(true, hn, res);
+});
+
 function getSite(shouldRender, site, res){
-  helpers.getSite(site, function(err, links){
+  helpers.getSite(site, redisClient, function(err, links){
     if(err){
       console.log('Error getting links', err);
       res.send(new Error('Error occurred'));
@@ -26,11 +37,6 @@ function getSite(shouldRender, site, res){
     res.send(links);
   });
 }
-
-router.get('/', function(req, res){
-  var hn = sites['Hacker News'];
-  getSite(true, hn, res);
-});
 
 router.get('/:site', function(req, res){
   if(req.params.site.indexOf('Echo') > -1) {

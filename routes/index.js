@@ -1,7 +1,5 @@
 'use strict';
 var helpers = require('../lib/helpers');
-var Xray = require('x-ray'); // web scraper
-var xray = new Xray();
 var express = require('express');
 var router = express.Router();
 var redis = require('redis');
@@ -27,8 +25,8 @@ router.get('/', function(req, res){
 function getSite(shouldRender, site, res){
   helpers.getSite(site, redisClient, function(err, links){
     if(err){
-      console.log('Error getting links', err);
       res.send(new Error('Error occurred'));
+      return;
     }
     if(shouldRender){
       res.render('index', { links: links, sites: sites });
@@ -40,19 +38,21 @@ function getSite(shouldRender, site, res){
 
 router.get('/:site', function(req, res){
   if(req.params.site.indexOf('Echo') > -1) {
-    scrapeSite('http://www.echojs.com/', 'article h2', { link: 'a@href', title: 'a' }, res);
+    var opts = {
+      params: {
+        link: 'a@href', 
+        title: 'a'
+      },
+      url: 'http://www.echojs.com/',
+      element: 'article h2',
+      redisClient: redisClient
+    };
+    helpers.scrapeSite(opts, res);
   } else {
     var site = sites[req.params.site];
     getSite(false, site, res);
   }
 });
 
-function scrapeSite(url, element, params, res){
-  xray(url, element, [params])(function(err, newslist) {
-    if(err){ 
-      return console.log('err', err);
-    }
-    return res.send(newslist);
-  });
-}
+
 module.exports = router;

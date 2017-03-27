@@ -54,5 +54,6 @@ router.get('/:site', function(req, res){
   }
 });
 
+helpers.loadSitesHourly(sites);
 
 module.exports = router;

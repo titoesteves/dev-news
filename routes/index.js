@@ -54,6 +54,7 @@ router.get('/:site', function(req, res){
   }
 });
 
-helpers.loadSitesHourly(sites);
+helpers.loadSites(sites); // load sites on first run
+helpers.loadSitesHourly(sites); 
 
 module.exports = router;

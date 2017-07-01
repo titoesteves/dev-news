@@ -28,6 +28,11 @@ ul, li {
   padding: 0;
 }
 
+.site_name:hover {
+cursor: pointer;
+color: blue;
+}
+
 .aside {
   width: 20%;
   float: left;

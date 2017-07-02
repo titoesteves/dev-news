@@ -2,14 +2,15 @@
 var helpers = require('../lib/helpers');
 var express = require('express');
 var router = express.Router();
+var redis = require('redis');
+var redisClient;
 
 if (process.env.PRODUCTION) {
-  var url   = require("url").parse(process.env.REDIS_URL || '');
-  var redisClient = require("redis").createClient(url.port, url.hostname);
-  redisClient.auth(url.auth.split(":")[1]);
+  var url = require('url').parse(process.env.REDIS_URL);
+  redisClient = redis.createClient(url.port, url.hostname);
+  redisClient.auth(url.auth.split(':')[1]);
 } else {
-  var redis = require('redis');
-  var redisClient = redis.createClient(6379, '127.0.0.1');
+  redisClient = redis.createClient(6379, '127.0.0.1');
 }
 
 redisClient.on('connect', function () {

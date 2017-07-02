@@ -5,7 +5,7 @@ var router = express.Router();
 var redis = require('redis');
 var redisClient;
 
-if (process.env.production) {
+if (process.env.NODE_ENV) {
   var url = require('url').parse(process.env.REDIS_URL);
   redisClient = redis.createClient(url.port, url.hostname);
   redisClient.auth(url.auth.split(':')[1]);

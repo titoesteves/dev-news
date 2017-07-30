@@ -9,6 +9,13 @@ if (process.env.NODE_ENV === 'production') {
   var url = require('url').parse(process.env.REDIS_URL);
   redisClient = redis.createClient(url.port, url.hostname);
   redisClient.auth(url.auth.split(':')[1]);
+  redisClient.flushdb(function (err, succeeded) {
+    if (err) {
+      console.log('Error trying to clear redis cache', err.message);
+      return;
+    }
+    console.log('Redis cache cleared'); 
+  });
 } else {
   redisClient = redis.createClient(6379, '127.0.0.1');
 }
@@ -25,19 +32,19 @@ var sites = {
   'Github Trend': 'http://reader.one/api/news/github?limit=20'
 };
 
-router.get('/', function(req, res){
+router.get('/', function (req, res) {
   var hn = sites['Hacker News'];
   getSite(true, hn, res);
 });
 
-function getSite(shouldRender, site, res){
-  
-  helpers.getSite(site, redisClient, function(err, links){
-    if(err){
+function getSite(shouldRender, site, res) {
+
+  helpers.getSite(site, redisClient, function (err, links) {
+    if (err) {
       res.send(new Error(err.message));
       return;
     }
-    if(shouldRender){
+    if (shouldRender) {
       res.render('index', { links: links, sites: sites });
       return;
     }
@@ -45,11 +52,11 @@ function getSite(shouldRender, site, res){
   });
 }
 
-router.get('/:site', function(req, res){
-  if(req.params.site.indexOf('Echo') > -1) {
+router.get('/:site', function (req, res) {
+  if (req.params.site.indexOf('Echo') > -1) {
     var opts = {
       params: {
-        link: 'a@href', 
+        link: 'a@href',
         title: 'a'
       },
       url: 'http://www.echojs.com/',
@@ -64,6 +71,6 @@ router.get('/:site', function(req, res){
 });
 
 helpers.loadSites(sites); // load sites on first run
-helpers.loadSitesHourly(sites); 
+helpers.loadSitesHourly(sites);
 
 module.exports = router;

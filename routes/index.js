@@ -5,7 +5,6 @@ var router = express.Router();
 var redis = require('redis');
 var redisClient;
 
-console.log('NODE_ENVV', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
   var url = require('url').parse(process.env.REDIS_URL);
   redisClient = redis.createClient(url.port, url.hostname);
@@ -28,16 +27,12 @@ var sites = {
 
 router.get('/', function(req, res){
   var hn = sites['Hacker News'];
-  console.log({site: hn}, 'routes/index.js --- router.get("/")');
   getSite(true, hn, res);
 });
 
 function getSite(shouldRender, site, res){
-  console.log({site: site}, 'routes/index.js --- line 36');
   
   helpers.getSite(site, redisClient, function(err, links){
-    console.log({site: site}, 'routes/index.js --- line 39');
-    
     if(err){
       res.send(new Error(err.message));
       return;
@@ -64,7 +59,6 @@ router.get('/:site', function(req, res){
     helpers.scrapeSite(opts, res);
   } else {
     var site = sites[req.params.site.trim()];
-    console.log({site: site}, 'routes/index.js -- line 67');
     getSite(false, site, res);
   }
 });

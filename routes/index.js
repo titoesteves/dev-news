@@ -63,7 +63,7 @@ router.get('/:site', function(req, res){
     };
     helpers.scrapeSite(opts, res);
   } else {
-    var site = sites[req.params.site];
+    var site = sites[req.params.site.trim()];
     console.log({site: site}, 'routes/index.js -- line 67');
     getSite(false, site, res);
   }

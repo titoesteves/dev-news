@@ -41,7 +41,7 @@ function getSite(shouldRender, site, res) {
 
   helpers.getSite(site, redisClient, function (err, links) {
     if (err) {
-      res.send(new Error(err.message));
+      res.send(err.message);
       return;
     }
     if (shouldRender) {

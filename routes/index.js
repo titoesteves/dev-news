@@ -28,13 +28,18 @@ var sites = {
 
 router.get('/', function(req, res){
   var hn = sites['Hacker News'];
+  console.log({site: site}, 'routes/index.js --- router.get("/")')
   getSite(true, hn, res);
 });
 
 function getSite(shouldRender, site, res){
+  console.log({site: site}, 'routes/index.js --- line 36')
+  
   helpers.getSite(site, redisClient, function(err, links){
+    console.log({site: site}, 'routes/index.js --- line 39')
+    
     if(err){
-      res.send(new Error('Error occurred'));
+      res.send(new Error(err.message));
       return;
     }
     if(shouldRender){

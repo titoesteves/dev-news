@@ -2,6 +2,7 @@ var App = (function() {
   var $links, $site;
 
   function siteClick(event) {
+    $('html, body').animate({ scrollTop: 0 }, 100);
     var siteUrl = '/' + event.target.innerHTML;
     $.get(siteUrl, function(data) {
       $links.html('');

@@ -7,4 +7,4 @@ You can view the site at ["Dev News"](http://devnews.noip.me/)
 
 There are a few things I would like to add but the basic functionality is complete. 
 
-Tech stack: express, nginx, node, jquery, handlebars, eslint
+Tech stack: express, nginx, redis, node, jquery, handlebars, eslint

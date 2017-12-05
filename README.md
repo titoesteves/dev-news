@@ -1,7 +1,7 @@
-# rss-reader
+# Dev News
 
 <hr/>
-Rss-reader is a web application I created over a weekend. I wanted to create a site that has my favorite developer news articles. 
+Dev New is a web application I created over a weekend. I wanted to create a site that has my favorite developer news articles. 
 
 You can view the site at ["Dev News"](http://devnews.noip.me/) 
 
